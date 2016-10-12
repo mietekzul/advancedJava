@@ -2,7 +2,6 @@ package generics;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import static java.lang.System.out;
 
