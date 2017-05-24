@@ -8,6 +8,7 @@ public class LocksDemo {
 	private Counter counter = new Counter();
 	private SyncCounter syncCounter = new SyncCounter();
 	private LockedCounter lockedCounter = new LockedCounter();
+	private AtomicCounter atomicCounter = new AtomicCounter();
 
 	public void demoCounter() {
 		ExecutorService service = Executors.newCachedThreadPool();
@@ -33,11 +34,19 @@ public class LocksDemo {
 		System.out.println("LockedCounter count: 		" + lockedCounter.getCount());
 	}
 
-
+	public void demoAtomicCounter() {
+		ExecutorService service = Executors.newCachedThreadPool();
+		IntStream.range(0, 1000)
+				.forEach(i -> service.submit(atomicCounter::increment));
+		service.shutdown();
+		System.out.println("AtomicCounter count: 		" + atomicCounter.getCount());
+	}
+	// this shit is not working like on VIDEO
 	public static void main(String[] args) {
 		LocksDemo demo = new LocksDemo();
 		demo.demoCounter();
 		demo.demoSyncCounter();
 		demo.demoLockCounter();
+		demo.demoAtomicCounter();
 	}
 }
