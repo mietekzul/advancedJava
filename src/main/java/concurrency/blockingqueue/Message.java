@@ -1,4 +1,4 @@
-package blockingqueue;
+package concurrency.blockingqueue;
 
 public final class Message {
 	private final int id;
